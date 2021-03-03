@@ -73,6 +73,10 @@ def select_entries(entries):
     new_entries = list()
     for entry in entries:
         note_text = entry["note"]["text"]
+        if note_text is not None:
+            if "TRImported" in note_text:
+                print("Entry already in Taskray:")
+                print(entry)
         if note_text is None or "TRImported" not in note_text:
             new_entries.append(entry)
 
