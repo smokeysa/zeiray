@@ -10,16 +10,19 @@ from zeiray.timeular import Timeular
 def get_user_time_range():
     # You probably want last week.
     now = datetime.datetime.now()
-    one_day = datetime.timedelta(days=1) # Want the end of yesterday
-    yesterday = now - one_day
-    yesterday.replace(hour = 0, minute=0, second=0, microsecond=0)
+    week = datetime.timedelta(days=6) # Want the end of the Sunday.
+    lastweek = now - week
+    weekday = lastweek.weekday()
+    remove_days = datetime.timedelta(days=weekday)
+    lastweek -= remove_days
+    lastweek.replace(hour = 0, minute=0, second=0, microsecond=0)
 
-    start_time = yesterday
+    start_time = lastweek
     txt = input("Enter start date YYYY-MM-DD [{}]: ".format(start_time.strftime("%Y-%m-%d")))
     if txt != '':
         start_time = datetime.datetime.strptime(txt, "%Y-%m-%d")
         
-    end_time = yesterday
+    end_time = start_time + week
     txt = input("Enter end date YYYY-MM-DD [{}]: ".format(end_time.strftime("%Y-%m-%d")))
     if txt != '':
         end_time = datetime.datetime.strptime(txt, "%Y-%m-%d")
