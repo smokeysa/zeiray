@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import datetime
 import json
 import re
@@ -104,6 +106,7 @@ def main():
         if success:
             patch_entry = {"note" : {"text" : "TRImported"}}
             response = timeular.time_entries.patch(entry["id"], patch_entry)
+            print("Response from patch:")
             print(response)
     
 
