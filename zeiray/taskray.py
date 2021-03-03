@@ -55,4 +55,5 @@ class TaskRay:
         trtime__c = SFType("TASKRAY__trTaskTime__c", self._session_id, self._instance)
         response = trtime__c.create(data)
         print(response)
+        return response["success"]
         
